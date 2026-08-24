@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Simulador Hipotecario</title>
+    <!-- Vinculación del archivo de estilos -->
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&family=Amatic+SC:wght@700&family=Caveat:wght@700&family=Dancing+Script:wght@700&family=Lobster&family=Metal+Mania&family=Yellowtail&family=Permanent+Marker&family=Piedra&family=Sriracha&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="wrap">
+        <h1>🏠 Simulador hipotecario</h1>
+        <p class="sub">Cambia cualquier dato y los resultados se recalculan automáticamente.</p>
+
+        <div class="card">
+            <div class="grid">
+                <div>
+                    <label>Capital pendiente (€)</label>
+                    <input id="capital" type="number" value="180000" min="0" step="100">
+                </div>
+                <div>
+                    <label>Meses que quedan</label>
+                    <input id="months" type="number" value="240" min="1" step="1">
+                </div>
+                <div>
+                    <label>Interés anual (%)</label>
+                    <input id="rate" type="number" value="2.5" min="0" step="0.01">
+                </div>
+                <div>
+                    <label>Tipo de interés</label>
+                    <select id="type">
+                        <option>Fijo</option>
+                        <option>Variable (simulación)</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Amortización anticipada (€)</label>
+                    <input id="extra" type="number" value="0" min="0" step="100">
+                </div>
+                <div>
+                    <label>¿Qué quieres reducir?</label>
+                    <select id="reduce">
+                        <option value="term">Plazo</option>
+                        <option value="payment">Cuota</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Comisión de amortización (%)</label>
+                    <input id="fee" type="number" value="0" min="0" step="0.01">
+                </div>
+                <div>
+                    <label>Interés alternativo (%)</label>
+                    <input id="altRate" type="number" value="3.5" min="0" step="0.01">
+                </div>
+            </div>
+            <br>
+            <button onclick="resetAll()">Restablecer ejemplo</button>
+        </div>
+
+        <div class="card">
+            <h1>Resultados</h1>
+            <div class="results">
+                <div class="result">Cuota actual<b id="payment">—</b></div>
+                <div class="result">Intereses restantes<b id="interest">—</b></div>
+                <div class="result">Coste total restante<b id="total">—</b></div>
+                <div class="result">Cuota tras amortizar<b id="newPayment">—</b></div>
+                <div class="result">Nuevo plazo<b id="newTerm">—</b></div>
+                <div class="result">Ahorro en intereses<b id="saving">—</b></div>
+                <div class="result">Comisión<b id="commission">—</b></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h1>Comparación de intereses</h1>
+            <div class="results">
+                <div class="result">Con interés actual<b id="currentRate">—</b></div>
+                <div class="result">Con interés alternativo<b id="alternative">—</b></div>
+                <div class="result">Diferencia<b id="difference">—</b></div>
+            </div>
+            <p class="note">El cálculo usa el sistema francés de amortización y supone que el tipo indicado permanece constante durante todo el periodo.</p>
+        </div>
+
+        <div class="card">
+            <h2>Primeros 12 meses</h2>
+            <div style="overflow:auto">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Mes</th>
+                            <th>Cuota</th>
+                            <th>Intereses</th>
+                            <th>Capital</th>
+                            <th>Saldo</th>
+                        </tr>
+                    </thead>
+                    <tbody id="schedule"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Vinculación del archivo de lógica -->
+    <script src="script.js"></script>
+</body>
+</html>
