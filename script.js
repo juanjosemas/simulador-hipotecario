@@ -88,14 +88,14 @@ function calc() {
     document.getElementById("schedule").innerHTML = rows;
 }
 
-// Función para resetear valores
+// Función para resetear valores (ahora los deja vacíos)
 function resetAll() {
-    document.getElementById("capital").value = 180000;
-    document.getElementById("months").value = 240;
-    document.getElementById("rate").value = 2.5;
-    document.getElementById("extra").value = 0;
-    document.getElementById("fee").value = 0;
-    document.getElementById("altRate").value = 3.5;
+    document.getElementById("capital").value = "";
+    document.getElementById("months").value = "";
+    document.getElementById("rate").value = "";
+    document.getElementById("extra").value = "";
+    document.getElementById("fee").value = "";
+    document.getElementById("altRate").value = "";
     document.getElementById("reduce").value = "term";
     calc();
 }
